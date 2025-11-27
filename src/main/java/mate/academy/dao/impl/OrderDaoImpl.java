@@ -44,6 +44,7 @@ public class OrderDaoImpl implements OrderDao {
             CriteriaQuery<Order> query = builder.createQuery(Order.class);
             Root<Order> root = query.from(Order.class);
             root.fetch("tickets");
+            root.fetch("users");
             query.distinct(true);
             query.where(builder.equal(root.get("user"), user));
             query.orderBy(builder.desc(root.get("orderDate")));
